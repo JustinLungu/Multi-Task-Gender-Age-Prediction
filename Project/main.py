@@ -42,9 +42,9 @@ The model is sourced from https://github.com/JustinLungu/Multi-Task-Gender-Age-P
 )
 
 
-@app.get("/", description="Root endpoint that redirects to documentation.")
-async def root():
-    return RedirectResponse(url='/docs')
+# @app.get("/", description="Root endpoint that redirects to documentation.")
+# async def root():
+#     return RedirectResponse(url='/docs')
 
 
 # @app.get("/hello_world", description="Hello world endpoint.")
