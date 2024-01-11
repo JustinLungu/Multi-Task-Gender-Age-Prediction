@@ -23,12 +23,14 @@ def preprocess(file):
         transforms.Normalize(0.5, 0.5),
     ])
     image = transform(image)
+    image = torch.stack([image])
     return image
 
 
 #def load_model():
 model = MultiTaskModel()
-model.load_state_dict(torch.load('FastAPI/trained_multi_model.pth'));
+model.load_state_dict(torch.load('FastAPI/trained_multi_model.pth'))
+print(model)
 model.eval();
 print("Model loaded");
 

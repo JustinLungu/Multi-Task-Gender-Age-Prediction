@@ -15,7 +15,7 @@ import FastAPI.multitask_model as multitask_model
 
 class Predictions(BaseModel):
     age: float
-    gender: int
+    gen: int
 
 
 app = FastAPI(
@@ -56,6 +56,7 @@ async def hello_world():
 async def predict(image: UploadFile):
     try:
         tensor_image = multitask_model.preprocess(image)
+        print(tensor_image.shape)
     except PIL.UnidentifiedImageError:
         raise HTTPException(status_code=415, detail="Invalid image")
     #multitask_model.load_model()
