@@ -8,6 +8,7 @@ import torch
 from PIL import Image
 from fastapi import FastAPI, UploadFile, HTTPException
 from pydantic import BaseModel
+from starlette.responses import RedirectResponse
 
 import multitask_model as multitask_model
 

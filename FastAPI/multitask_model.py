@@ -4,8 +4,6 @@
 import torch
 from torch import nn
 import torch.nn.functional as F
-from datasets import load_dataset
-import fastcore.all as fc
 import torchvision.transforms.functional as TF
 from torch.utils.data import default_collate, DataLoader
 import torch.optim as optim
