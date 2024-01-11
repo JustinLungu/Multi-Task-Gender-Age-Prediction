@@ -38,5 +38,5 @@ print("Model loaded");
 def predict(img):
     with torch.no_grad():
         age_pred, gen_pred = model(img)  # Forward pass
-        gen_pred = (gen_pred.squeeze() > 0.5).float()
+        gen_pred = "male" if gen_pred.squeeze().item() <= 0.5 else "female"
     return age_pred, gen_pred
