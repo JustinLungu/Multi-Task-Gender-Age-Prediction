@@ -11,11 +11,11 @@ from PIL import Image
 from torchvision import transforms
 from Model_Code.MultiTaskModel import MultiTaskModel
 
-loaded_model = None
+#model = None
 
 
 def preprocess(file):
-    image = Image.open(file).convert('L')
+    image = Image.open(file.file).convert('L')
     transform = transforms.Compose([
         transforms.Resize((100, 100)),
         transforms.ToTensor(),
@@ -26,14 +26,15 @@ def preprocess(file):
     return image
 
 
-def load_model():
-    loaded_model = MultiTaskModel()
-    loaded_model.load_state_dict(torch.load('trained_multi_model.pth'))
-    loaded_model.eval()
+#def load_model():
+model = MultiTaskModel()
+model.load_state_dict(torch.load('FastAPI/trained_multi_model.pth'));
+model.eval();
+print("Model loaded");
 
 
 def predict(img):
     with torch.no_grad():
-        age_pred, gen_pred = loaded_model(img)  # Forward pass
+        age_pred, gen_pred = model(img)  # Forward pass
         gen_pred = (gen_pred.squeeze() > 0.5).float()
     return age_pred, gen_pred

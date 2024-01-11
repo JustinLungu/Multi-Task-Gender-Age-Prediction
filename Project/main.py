@@ -58,6 +58,7 @@ async def predict(image: UploadFile):
         tensor_image = multitask_model.preprocess(image)
     except PIL.UnidentifiedImageError:
         raise HTTPException(status_code=415, detail="Invalid image")
+    #multitask_model.load_model()
     pred_age, pred_gen = multitask_model.predict(tensor_image)
 
     return Predictions(age=pred_age, gen=pred_gen)
