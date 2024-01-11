@@ -9,7 +9,7 @@ from torch.utils.data import default_collate, DataLoader
 import torch.optim as optim
 from PIL import Image
 from torchvision import transforms
-from Project.Model_Code.MultiTaskModel import MultiTaskModel
+from Model_Code.MultiTaskModel import MultiTaskModel
 
 loaded_model = None
 

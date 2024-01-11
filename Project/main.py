@@ -10,7 +10,7 @@ from fastapi import FastAPI, UploadFile, HTTPException
 from pydantic import BaseModel
 from starlette.responses import RedirectResponse
 
-import multitask_model as multitask_model
+import FastAPI.multitask_model as multitask_model
 
 
 class Predictions(BaseModel):
