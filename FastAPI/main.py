@@ -8,18 +8,13 @@ import torch
 from PIL import Image
 from fastapi import FastAPI, UploadFile, HTTPException
 from pydantic import BaseModel
-from starlette.responses import RedirectResponse
 
-import mnist_classifier
-
-
-class DigitConfidence(BaseModel):
-    digit: int = 7
-    confidence: float = 0.2
+import multitask_model as multitask_model
 
 
-class DigitPredictions(BaseModel):
-    predictions: List[DigitConfidence]
+class Predictions(BaseModel):
+    age: float
+    gender: int
 
 
 app = FastAPI(
@@ -52,28 +47,16 @@ async def hello_world():
     return "Hello world!"
 
 
-def process_image(file):
-    image = Image.open(file.file)
-    image = image.resize((28, 28))  # Resize to MNIST image size
-    image = image.convert("L")  # Convert to grayscale
-    raw_image = image
-    image = np.array(image)
-    image = image / 255.0  # Normalize pixel values
-    return torch.from_numpy(image).float().reshape(1, 28, 28), raw_image
-
-
 @app.post("/predict", description="Image classifier endpoint. Add {'image': binary_image} to json body to send "
                                   "request. Image should be a black handwritten digit against a white background. "
                                   "Returns class confidences.",
-          response_model=DigitPredictions,
+          response_model=Predictions,
           response_description="Confidence for each of the possible digits 0-9. Confidences range from 0-1.")
 async def predict(image: UploadFile):
     try:
-        tensor_image, raw_image = process_image(image)
+        tensor_image = multitask_model.preprocess(image)
     except PIL.UnidentifiedImageError:
         raise HTTPException(status_code=415, detail="Invalid image")
-    confs: np.ndarray = mnist_classifier.predict(tensor_image)
-    digit_confs = [DigitConfidence(digit=i, confidence=conf) for i, conf in enumerate(confs)]
+    pred_age, pred_gen = multitask_model.predict(tensor_image)
 
-    return DigitPredictions(predictions=digit_confs)
-
+    return Predictions(age=pred_age, gen=pred_gen)
