@@ -33,7 +33,8 @@ and tailor their advertising efforts to better resonate with their target audien
 
 The model is trained on 100x100 images of male and female human faces, all of various ages ranging from 0 to 116 from the UTKface dataset 
 (https://susanqq.github.io/UTKFace/). 
-Consequently, it is designed to receive images that are mostly square and display a singular face.
+Consequently, it is designed to receive images that are mostly square and display a singular face. The image should be closely cropped to the face,
+(i.e. top of the forehead to bottom of chin, ear to ear, almost no neck or hair showing), and mostly front-facing. 
  
 
 The model is sourced from https://github.com/JustinLungu/Multi-Task-Gender-Age-Prediction.git.
@@ -42,9 +43,9 @@ The model is sourced from https://github.com/JustinLungu/Multi-Task-Gender-Age-P
 )
 
 
-# @app.get("/", description="Root endpoint that redirects to documentation.")
-# async def root():
-#     return RedirectResponse(url='/docs')
+@app.get("/", description="Root endpoint that redirects to documentation.")
+async def root():
+    return RedirectResponse(url='/docs')
 
 
 # @app.get("/hello_world", description="Hello world endpoint.")
@@ -53,7 +54,8 @@ The model is sourced from https://github.com/JustinLungu/Multi-Task-Gender-Age-P
 
 
 @app.post("/predict", description="Image classifier endpoint. Add {'image': binary_image} to json body to send "
-                                  "request. Image should be of a singular human face. "
+                                  "request. Image should be of a singular human face."
+                                  "The image should be closely cropped to the face, (i.e. top of the forehead to bottom of chin, ear to ear, almost no neck or hair showing), and mostly front-facing. "
                                   "Returns age and gender prediction.",
           response_model=Predictions,
           response_description="Prediction values for age and gender")
