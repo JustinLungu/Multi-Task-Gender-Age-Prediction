@@ -3,15 +3,24 @@ import torch.nn as nn
 class MultiTaskModel(nn.Module):
     def __init__(self):
         super(MultiTaskModel, self).__init__()
+        # TinyVGG Architecture
+        # Convolutional layer set 1
+        self.conv1_1 = nn.Conv2d(1, 64, kernel_size=3, padding=1)
+        self.relu1_1 = nn.ReLU()
+        self.conv1_2 = nn.Conv2d(64, 64, kernel_size=3, padding=1)
+        self.relu1_2 = nn.ReLU()
+        self.max_pool1 = nn.MaxPool2d(kernel_size=2)
 
-        # Convolutional layers
-        self.conv1 = nn.Conv2d(1, 64, kernel_size=3, padding=1)
-        self.conv2 = nn.Conv2d(64, 64, kernel_size=3, padding=1)
-        self.max_pool = nn.MaxPool2d(kernel_size=2)
+        # Convolutional layer set 2
+        self.conv2_1 = nn.Conv2d(64, 64, kernel_size=3, padding=1)
+        self.relu2_1 = nn.ReLU()
+        self.conv2_2 = nn.Conv2d(64, 64, kernel_size=3, padding=1)
+        self.relu2_2 = nn.ReLU()
+        self.max_pool2 = nn.MaxPool2d(kernel_size=2)
 
         # Fully connected layers
         self.flatten = nn.Flatten()
-        self.dense_shared = nn.Linear(50 * 50 * 64, 128)  # Calculate the input size based on your input_shape
+        self.dense_shared = nn.Linear(25 * 25 * 64, 128)  # Calculate the input size based on your input_shape
 
         # Output layers
         self.classification_output = nn.Linear(128, 1)
@@ -23,10 +32,15 @@ class MultiTaskModel(nn.Module):
         self.linear = nn.Identity()  # No activation for linear output
 
     def forward(self, x):
-        # Forward pass through convolutional layers
-        x = self.relu(self.conv1(x))
-        x = self.relu(self.conv2(x))
-        x = self.max_pool(x)
+        # Forward pass through convolutional layer set 1
+        x = self.relu1_1(self.conv1_1(x))
+        x = self.relu1_2(self.conv1_2(x))
+        x = self.max_pool1(x)
+
+        # Forward pass through convolutional layer set 2
+        x = self.relu2_1(self.conv2_1(x))
+        x = self.relu2_2(self.conv2_2(x))
+        x = self.max_pool2(x)
 
         # Flatten and pass through fully connected layers
         x = self.flatten(x)
