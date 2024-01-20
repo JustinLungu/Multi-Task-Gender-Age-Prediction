@@ -9,6 +9,7 @@ from MultiTaskLossWrapper import MultiTaskLossWrapper
 from BaselineGenderModel import BaselineGenderModel
 from BaselineAgeModel import BaselineAgeModel
 import evaluation
+import os
 
 def plot_losses(train_losses, val_losses):
     # Plotting losses over epochs
@@ -33,9 +34,12 @@ def run_model(model_type, data_usage, split):
     optimizer = optim.Adam(model.parameters(), lr=0.001)  # You can adjust the learning rate as needed
 
     batch_size = 32
-    df_path = '../data/UTKFace_labels.csv'
-    image_folder_path = '../data/UTKFace'
-    #1 = 100% and 0 = 0%
+    # Get the current working directory
+    current_directory = os.getcwd()
+    # Print the current working directory
+    print("Current Directory:", current_directory)
+    image_folder_path = os.path.join(current_directory, 'Data', 'UTKFace')
+    df_path = os.path.join(current_directory, 'Data', 'UTKFace_labels.csv')
     data_percentage = data_usage
 
     # write split_done = True if you already have csv files of the split data in ../data/datasets/
@@ -47,7 +51,7 @@ def run_model(model_type, data_usage, split):
     # Training loop
     val_losses = []
     train_losses = []
-    epochs = 15
+    epochs = 5
     for epoch in range(epochs):
         print("epoch:", epoch)
         model.train()  # Set the model to training mode
