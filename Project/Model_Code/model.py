@@ -20,7 +20,7 @@ def plot_losses(train_losses, val_losses):
     plt.legend()
     plt.savefig('loss_graph.png')
 
-def run_model(model_type):
+def run_model(model_type, data_usage, split):
     if model_type == 'final':
         model = MultiTaskModel()
         loss_func = MultiTaskLossWrapper(2)
@@ -35,11 +35,12 @@ def run_model(model_type):
     batch_size = 32
     df_path = '../data/UTKFace_labels.csv'
     image_folder_path = '../data/UTKFace'
-    data_percentage = 1
+    #1 = 100% and 0 = 0%
+    data_percentage = data_usage
 
     # write split_done = True if you already have csv files of the split data in ../data/datasets/
     # write False if you want these files to be created
-    dr = DataRetriever(model_type, df_path, image_folder_path, batch_size, data_percentage, split_done=True)
+    dr = DataRetriever(model_type, df_path, image_folder_path, batch_size, data_percentage, split_done=split)
     train_dataset, val_dataset, test_dataset = dr.retrieve_datasets()
     train_loader, val_loader, test_loader = dr.retrieve_loaders()
 
