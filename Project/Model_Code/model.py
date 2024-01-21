@@ -21,7 +21,7 @@ def plot_losses(train_losses, val_losses):
     plt.legend()
     plt.savefig('loss_graph.png')
 
-def run_model(model_type, data_usage, split):
+def run_model(model_type, data_usage, split, epochs, batch_size):
     if model_type == 'final':
         model = MultiTaskModel()
         loss_func = MultiTaskLossWrapper(2)
@@ -33,7 +33,6 @@ def run_model(model_type, data_usage, split):
         loss_func = nn.BCELoss()
     optimizer = optim.Adam(model.parameters(), lr=0.001)  # You can adjust the learning rate as needed
 
-    batch_size = 32
     # Get the current working directory
     current_directory = os.getcwd()
     # Print the current working directory
@@ -51,7 +50,6 @@ def run_model(model_type, data_usage, split):
     # Training loop
     val_losses = []
     train_losses = []
-    epochs = 5
     for epoch in range(epochs):
         print("epoch:", epoch)
         model.train()  # Set the model to training mode
