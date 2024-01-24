@@ -11,7 +11,7 @@ from PIL import Image
 from torchvision import transforms
 from Model_Code.MultiTaskModel import MultiTaskModel
 
-#model = None
+# model = None
 
 
 def preprocess(file):
@@ -27,12 +27,12 @@ def preprocess(file):
     return image
 
 
-#def load_model():
+# def load_model():
 model = MultiTaskModel()
-model.load_state_dict(torch.load('FastAPI/trained_multi_model.pth'))
+model.load_state_dict(torch.load('FastAPI/final_model.pth'))
 print(model)
-model.eval();
-print("Model loaded");
+model.eval()
+print("Model loaded")
 
 
 def predict(img):
