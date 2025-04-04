@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9427bba9-73d5-46d2-a352-28131f1c790a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Model_Code/CustomDataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Model_Code/CustomDataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Model_Code/DataRetriever.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Model_Code/DataRetriever.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Model_Code/evaluation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Model_Code/evaluation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Model_Code/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Model_Code/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Model_Code/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Model_Code/model.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
+  </component>
+</project>
