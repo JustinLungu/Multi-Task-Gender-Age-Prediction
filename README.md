@@ -1,5 +1,4 @@
-# Multi-Task-Gender-Age-Prediction
-Performing Multi-Task Learning on Gender and Age features from the UTK Dataset.
+# Multi-Task Gender and Age Prediction
 
 This repository contains the codebase for our Machine Learning Practical project at the University of Groningen, where we developed a deep learning model that simultaneously predicts a person’s **gender** and **age** from facial images using **multi-task learning**.
 
@@ -21,6 +20,14 @@ The project was trained and evaluated using the **UTKFace** dataset.
 - Evaluation using appropriate metrics (accuracy, F1 score, MSE)
 - Saliency maps for visualizing model attention
 
-## Repository Structure
+## Dataset
 
+The project uses the [UTKFace dataset](https://susanqq.github.io/UTKFace/), which contains over 20,000 facial images labeled with age, gender, and ethnicity. Only age and gender were used for this project.
 
+## Authors
+
+- Sophie Sananikone
+- Xenia Demetriou
+- Iustin Lungu
+
+This project was completed in December 2023 for the Machine Learning Practical course at the University of Groningen.
